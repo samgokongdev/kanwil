@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SptController;
 use App\Http\Controllers\TunggakanController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,8 @@ Route::get('/sp2jtbulanini', [TunggakanController::class, 'sp2jtbulanini'])->mid
 Route::get('/sp2permdokbulanini', [TunggakanController::class, 'sp2permdokbulanini'])->middleware(['auth', 'verified'])->name('tunggakan.sp2permdokbulanini');
 Route::get('/sp2sphpbulanini', [TunggakanController::class, 'sp2sphpbulanini'])->middleware(['auth', 'verified'])->name('tunggakan.sp2sphpbulanini');
 Route::get('/sp2lhpbulanini', [TunggakanController::class, 'sp2lhpbulanini'])->middleware(['auth', 'verified'])->name('tunggakan.sp2lhpbulanini');
+
+Route::get('/spt', [SptController::class, 'index'])->middleware(['auth', 'verified'])->name('spt');
 
 
 // Route::get('/dashboard', function () {
