@@ -23,6 +23,20 @@ class SptController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function semuaspt()
+    {
+        $spt = Pengawasanspt::OrderBy('tgl_jt_rik', 'asc')
+            ->get();
+        $title = 'Daftar SPT LB Restitusi Masuk Setahun Terakhir';
+        $desc = 'Daftar ini berisi Seluruh SPT LB Restitusi Yang Masuk Setahun Terakhir Beserta Status Pemeriksaannya';
+        return view('spt', compact('title', 'desc', 'spt'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -51,7 +65,9 @@ class SptController extends Controller
      */
     public function show($id)
     {
-        //
+        $dataspt = Pengawasanspt::where('id_spt','=',$id)->first();
+
+        return view('detailspt',compact('dataspt'));
     }
 
     /**

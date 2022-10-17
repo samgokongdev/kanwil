@@ -30,6 +30,8 @@ Route::get('/sp2sphpbulanini', [TunggakanController::class, 'sp2sphpbulanini'])-
 Route::get('/sp2lhpbulanini', [TunggakanController::class, 'sp2lhpbulanini'])->middleware(['auth', 'verified'])->name('tunggakan.sp2lhpbulanini');
 
 Route::get('/spt', [SptController::class, 'index'])->middleware(['auth', 'verified'])->name('spt');
+Route::get('/semuaspt', [SptController::class, 'semuaspt'])->middleware(['auth', 'verified'])->name('spt.semuaspt');
+Route::get('/spt/{id}', [SptController::class, 'show'])->middleware(['auth', 'verified'])->name('spt.show');
 
 
 // Route::get('/dashboard', function () {

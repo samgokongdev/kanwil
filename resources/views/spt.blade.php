@@ -22,6 +22,7 @@
                 <th>JENIS SPT</th>
                 <th>JATUH TEMPO</th>
                 <th>KETERANGAN</th>
+                <th>DETAIL</th>
               </tr>
             </thead>
             <tbody>
@@ -53,6 +54,10 @@
                   </td>
                   <td>
                     {{ $t->status }}
+                  </td>
+                  <td>
+                    <a href="{{ route('spt.show', $t->id_spt) }}"
+                      class="px-4 py-1 bg-indigo-400 hover:bg-indigo-600 text-indigo-100 rounded-md">Detail</a>
                   </td>
                 </tr>
               @endforeach
