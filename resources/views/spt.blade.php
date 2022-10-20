@@ -5,7 +5,7 @@
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
           <div class="py-2">
-            <div class="font-bold">{{ $title }}</div>
+            <div class="font-bold">{{ $title }} | KPP : {{ $kpp }}</div>
             <p class="text-xs py-2">
               {{ $desc }}
             </p>
@@ -20,9 +20,8 @@
                 <th>TANGGAL TERIMA</th>
                 <th>NILAI</th>
                 <th>JENIS SPT</th>
-                <th>JATUH TEMPO</th>
+                <th>TARGET SP2</th>
                 <th>KETERANGAN</th>
-                <th>DETAIL</th>
               </tr>
             </thead>
             <tbody>
@@ -47,17 +46,13 @@
                     {{ number_format($t->nilai) }}
                   </td>
                   <td>
-                    {{ $t->kode_alias }}
+                    {{ $t->kode_alias }} ({{ $t->ket }})
                   </td>
                   <td>
-                    {{ date('d-m-Y', strtotime($t->tgl_jt_rik)) }}
+                    {{ date('d-m-Y', strtotime($t->max_sp2)) }}
                   </td>
                   <td>
                     {{ $t->status }}
-                  </td>
-                  <td>
-                    <a href="{{ route('spt.show', $t->id_spt) }}"
-                      class="px-4 py-1 bg-indigo-400 hover:bg-indigo-600 text-indigo-100 rounded-md">Detail</a>
                   </td>
                 </tr>
               @endforeach
@@ -78,7 +73,12 @@
           'copyHtml5',
           'excelHtml5',
           'csvHtml5',
-          'pdfHtml5'
+          {
+            title: '<?php echo $title; ?> (KPP : <?php echo $kpp; ?>)',
+            extend: 'pdfHtml5',
+            orientation: 'landscape',
+            pageSize: 'LEGAL'
+          }
         ]
       });
     });

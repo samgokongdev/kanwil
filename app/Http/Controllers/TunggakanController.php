@@ -111,6 +111,100 @@ class TunggakanController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function sp2a($id)
+    {
+        $tunggakan = Tunggakan::where('sp2', '!=', "")
+            ->where('up2', '=', $id)
+            ->orderBy('max_lhp', 'asc')
+            ->get();
+        $kpp = $id;
+        $title = 'Daftar Tunggakan Pemeriksaan Outstanding';
+        $desc = 'Daftar ini berisi Seluruh daftar pemeriksaan yang telah terbit SP2. Termasuk SP2 yang belum input SPPL';
+        return view('tunggakan', compact('title', 'desc', 'tunggakan', 'kpp'));
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function sp2b($id)
+    {
+        $tunggakan = Tunggakan::where('sp2', '!=', "")
+            ->where('up2', '=', $id)
+            ->whereMonth('max_perm_dok', date('m'))
+            ->whereYear('max_perm_dok', date('Y'))
+            ->orderBy('max_lhp', 'asc')
+            ->get();
+        $kpp = $id;
+        $title = 'Daftar SP2 Target Selesai Permintaan Dukumen Bulan Ini';
+        $desc = 'Daftar ini berisi seluruh pemeriksaan yang seharusnya tahapan permintaan dokumennya telah selesai bulan ini';
+        return view('tunggakan', compact('title', 'desc', 'tunggakan', 'kpp'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function sp2c($id)
+    {
+        $tunggakan = Tunggakan::where('sp2', '!=', "")
+            ->where('up2', '=', $id)
+            ->whereMonth('max_pengujian_1', date('m'))
+            ->whereYear('max_pengujian_1', date('Y'))
+            ->orderBy('max_lhp', 'asc')
+            ->get();
+        $kpp = $id;
+        $title = 'Daftar SP2 Target Selesai Tahapan Pengujian 1 Bulan Ini';
+        $desc = 'Daftar ini berisi seluruh pemeriksaan yang tahapan pengujian 1 telah selesai bulan ini';
+        return view('tunggakan', compact('title', 'desc', 'tunggakan', 'kpp'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function sp2d($id)
+    {
+        $tunggakan = Tunggakan::where('sp2', '!=', "")
+            ->where('up2', '=', $id)
+            ->whereMonth('max_pengujian_2', date('m'))
+            ->whereYear('max_pengujian_2', date('Y'))
+            ->orderBy('max_lhp', 'asc')
+            ->get();
+        $kpp = $id;
+        $title = 'Daftar SP2 Target Selesai Tahapan Pengujian 2 (SPHP) Bulan Ini';
+        $desc = 'Daftar ini berisi seluruh pemeriksaan yang seharusnya telah selesai pengujian (Sudah SPHP) bulan ini';
+        return view('tunggakan', compact('title', 'desc', 'tunggakan', 'kpp'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function sp2e($id)
+    {
+        $tunggakan = Tunggakan::where('sp2', '!=', "")
+            ->where('up2', '=', $id)
+            ->whereMonth('max_lhp', date('m'))
+            ->whereYear('max_lhp', date('Y'))
+            ->orderBy('max_lhp', 'asc')
+            ->get();
+        $kpp = $id;
+        $title = 'Daftar SP2 Target Selesai LHP Bulan Ini';
+        $desc = 'Daftar ini berisi seluruh pemeriksaan yang seharusnya telah terbit LHP bulan ini';
+        return view('tunggakan', compact('title', 'desc', 'tunggakan', 'kpp'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -142,16 +236,7 @@ class TunggakanController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
